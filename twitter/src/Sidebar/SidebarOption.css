@@ -1,0 +1,47 @@
+.sidebarOption{
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    cursor: pointer;
+    color: var(--twitter-text-color);
+    font-weight: 600;
+    transition: color 0.2s ease-in-out;
+    padding: 10px 20px;
+    margin: 5px 0;
+}
+
+
+.sidebarOption:hover{
+    color: var(--twitter-color);
+    background-color: var(--twitter-background-hover);
+    border-radius: 20px;
+    transition: color 0.2s ease-in-out;
+}
+
+.sidebarOption > .MuiSvgIcon-root{
+    font-size: 30px !important;
+    padding: 0 10px;
+}
+
+.sidebarOption > h2{
+    font-size: 20px;
+    font-weight: 800;
+    margin-left: 20px;
+}
+
+.sidebarOption__active{
+    color: var(--twitter-color);
+    background-color: var(--twitter-background-hover);
+    border-radius: 20px;
+    transition: color 0.2s ease-in-out;
+}
+
+
+.sidebarOption__active:hover{
+    color: var(--twitter-color);
+    background-color: var(--twitter-background-hover);
+    border-radius: 20px;
+    transition: color 0.2s ease-in-out;
+}
+
+/* Path: twitter\src\Widgets.css */

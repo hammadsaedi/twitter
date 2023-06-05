@@ -1,0 +1,32 @@
+.radio-option{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 10px 0px;
+    cursor: pointer;
+}
+
+
+.radio-label {
+    margin-left: 10px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: rgb(15, 20, 25);
+}
+
+.radio-label {
+    margin-right: 10px;
+}
+
+  .circle-select {
+    margin-top: 10px;
+  }
+  
+  .user-select {
+    margin-top: 10px;
+  }
+  
+  .button {
+    margin-top: 10px;
+  }
+  

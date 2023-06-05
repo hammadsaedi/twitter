@@ -1,0 +1,42 @@
+.Widgets{
+    flex: 0.3;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 300px;
+    overflow-y: auto;
+    border-right: 1px solid var(--twitter-background);
+    background-color: var(--twitter-background);
+}
+
+.Widgets{
+    background-color: var(--twitter-background);
+    border-radius: 20px;
+    margin-bottom: 20px;
+    position: sticky;
+    top: 80px;
+}
+
+/* Path: twitter\src\Widgets.css */
+.Widgets{
+    margin-top: 20px;
+    border-radius: 20px;
+}
+
+.Widgets h2{
+    font-size: 20px;
+    font-weight: 800;
+    padding: 10px;
+    color: var(--twitter-text-color);
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: var(--twitter-background);
+    margin-bottom: 16px;
+    border-bottom: 2px solid var(--twitter-text-color);
+}
+
+::-webkit-scrollbar{
+    display: none;
+}

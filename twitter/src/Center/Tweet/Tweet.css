@@ -1,0 +1,89 @@
+.tweet-post {  
+  border: 2px solid var(--twitter-background);
+  border-radius: 70;
+
+  padding: 10px;
+  padding-right: 10px;
+  
+  margin: 0 auto;
+  margin-bottom: 16px;
+  margin-top: 16px;
+  
+  background-color: #fff;
+  
+  position: relative; 
+}
+
+.tweet-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.tweet-options {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px;
+  cursor: pointer;
+  justify-content: flex-end;
+  margin-left: auto;
+}
+
+.tweet-info-author {
+  display: inline-flex;
+  align-items: center;
+}
+
+.tweet-name {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.tweet-username {
+  font-size: 16px;
+  color: #888;
+  margin: 0;
+  padding-left: 10px;
+}
+
+.tweet-info {
+  margin-left: 8px;
+}
+
+.tweet-time {
+  font-size: 14px;
+  color: #888;
+  margin: 0;
+}
+
+.tweet-content {
+  font-family: sans-serif;
+  margin-bottom: 16px;
+}
+
+.tweet-content p {
+  font-size: 16px;
+  margin: 0;
+}
+
+.tweet-content a {
+  color: #1da1f2;
+  text-decoration: none;
+}
+
+.tweet-actions {
+  display: flex;
+  align-items: center;
+}
+
+.tweet-actions button {
+  display: flex;
+  align-items: center;
+  margin-right: 16px;
+}
+
+.tweet-action-count {
+  margin-left: 4px;
+}

@@ -1,0 +1,102 @@
+.tweetBox {
+  padding-bottom: 10px;
+  padding-right: 10px;
+
+  border: 2px solid var(--twitter-background);
+  border-radius: 80;
+  
+  margin: 0 auto;
+  margin-bottom: 16px;
+  margin-top: 16px;
+  
+  position: relative;
+}
+  
+.tweetBox > form {
+  display: flex;
+  flex-direction: column;
+}
+  
+.tweetBox__input {
+  padding: 20px;
+  display: flex;
+}
+
+.tweetBox__input > textarea {
+  flex: 1;
+  margin-left: 20px;
+  font-size: 20px;
+  border: none;
+  resize: none;
+  overflow: hidden;
+  outline: none;
+  width: 100%;
+}
+
+.tweetBoxAction{
+  display: flex;
+  align-items: flex-start;
+  padding: 10px;
+  color: var(--twitter-color);
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.tweetBox__imageInput {
+  border: none;
+  padding: 10px;
+}
+  
+.tweetBox__tweetButton {
+  background-color: var(--twitter-color) !important;
+  border: none !important;
+  color: white !important;
+  font-weight: 900 !important;
+  text-transform: inherit !important;
+  border-radius: 30px !important;
+  width: 80px;
+  height: 40px !important;
+  margin-left: auto !important;
+  cursor: pointer;
+}
+
+.tweetBox__tweetButton:disabled{
+  background-color: var(--twitter-background) !important;
+  color: var(--twitter-color) !important;
+  cursor: not-allowed;
+}
+
+.char-count {
+  font-size: 14px;    
+  top: 50%; 
+  left: 80px; 
+  transform: translate(0, -50%);
+  background-color: transparent; 
+  color: var(--twitter-color); 
+  font-size: 15px; 
+  border-radius: 50%; 
+  width: 10px; 
+  height: 10px; 
+  align-items: center; 
+  justify-content: center; 
+  border: 2px solid var(--twitter-color);
+  display: inline;
+  padding: 10px;
+  display: inline-flex;
+}
+
+.char-count.exceeded {
+  background-color: var(--twitter-color); 
+  color: white; 
+}
+
+.MuiAvatar-root {
+  width: 48px;
+  height: 48px;
+  margin-right: 10px;
+}
+
+.MuiSvgIcon-root {
+  font-size: 24px;
+  cursor: pointer;
+}

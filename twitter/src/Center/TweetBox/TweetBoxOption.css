@@ -1,0 +1,24 @@
+.TweetBoxOption {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.1s ease-in-out;
+    border-radius: 50%;
+}
+
+.TweetBoxOption:hover {
+    background-color: var(--twitter-background-hover);
+    border-radius: 60%;
+}
+
+.TweetBoxIcon {
+    font-size: 20px !important;
+    padding: 0 5px;
+    color: var(--twitter-text-color);
+}
+
+.TweetBoxIcon:hover {
+    color: var(--twitter-color);
+}

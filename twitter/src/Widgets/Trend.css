@@ -1,0 +1,55 @@
+.trend {
+    /* display: flex; */
+    /* align-items: center; */
+    margin: 16px;
+    color: var(--twitter-text-color);
+    padding: 10px;
+    cursor: pointer;
+    background-color: rgb(166, 228, 243, 0.2);
+    border-radius: 10px;
+}
+
+.trend:hover { 
+    background-color: rgb(166, 228, 243, 0.5);
+}
+
+
+.trend-info {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+  }
+  
+  .trend-rank {
+    font-weight: bold;
+    margin: 5px;
+  }
+  
+  .trend-separator {
+    margin: 5px;
+    color: #999;
+  }
+  
+  .trend-status {
+    font-size: 14px;
+    color: #666;
+    margin: 5px;
+  }
+  
+  .trend-name {
+    margin: 5px;
+  }
+  
+  .hashtag {
+    font-size: 16px;
+    font-weight: bold;
+    color: #000;
+    margin: 5px;
+  }
+  
+  .trend-count {
+    font-size: 14px;
+    color: #999;
+    margin: 5px;
+  }
+  

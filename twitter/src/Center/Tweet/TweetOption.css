@@ -1,0 +1,34 @@
+.TweetOption {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.1s ease-in-out;
+    border-radius: 50%;
+    color: var(--twitter-text-color);
+}
+
+.TweetOption:hover {
+    background-color: var(--twitter-background-hover) !important;
+    border-radius: 40%;
+}
+
+.Icon {
+    font-size: 20px !important;
+    padding: 0 5px;
+    color: var(--twitter-text-color);
+}
+
+.Icon:hover {
+    color: var(--twitter-color);
+}
+
+.tweet-action-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 5px;
+    font-size: 15px;
+    color: var(--twitter-text-color);
+}
