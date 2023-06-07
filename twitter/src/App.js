@@ -13,9 +13,15 @@ import Bookmarks from './Bookmarks/Bookmarks';
 import Explore from './Explore/Explore';
 import Notifications from './Notifications/Notifications';
 import Profile from './Profile/Profile';
-import SignInUpForm from './SignInUp/SignInUp';
+
+import SignInForm from './SignInUp/SignIn';
+import SignUpForm from './SignInUp/SignUp';
 
 function App() {
+  const [login, setLogin] = useState(false);
+
+  const [userName, setUserName] = useState('');
+
   const [activeOption, setActiveOption] = useState("Home");
 
   const [tweetPopup, setTweetPopup] = useState(false);
@@ -23,6 +29,26 @@ function App() {
   const [logoutPopup, setLogoutPopup] = useState(false);
 
   const [HashTag, setHashTag] = useState("#Twitter");
+
+  const handleLogin = (email, password) => {
+    if (email === 'faoqzuhair@gmail.com' && password === 'admin12345'){
+      setUserName("faoqzuhair");
+      setLogin(true);
+      setActiveOption("Home");
+    } else {
+      alert('Invalid Credentials');
+    }
+    console.log('Logging in....');
+  }
+
+  const handleSignUp = (name, email, password) => {
+    // push to database
+    setUserName(email.split('@')[0]);
+    console.log('Signing Up....');
+    setLogin(true);
+    setActiveOption("Home");
+  }
+
 
   
   const handleOption = (option) => {
@@ -37,6 +63,7 @@ function App() {
   };
 
   const handleLogout = () => {
+    setLogin(false);
     setLogoutPopup(!logoutPopup);
     console.log('Tweeting....');
   };
@@ -78,53 +105,61 @@ function App() {
       )}
 
       {/* Sidebar */}
-      <Sidebar className={`${tweetPopup ? 'blur' : ''}`} handleClick={handleOption} handleTweet={handleTweet} handleLogout={handleLogout}/>
+      <Sidebar className={`${tweetPopup ? 'blur' : ''}`} login={login} handleClick={handleOption} handleTweet={handleTweet} handleLogout={handleLogout}/>
 
       {/* Feed */}
       {activeOption === "Home" &&
-        // <Feed filter = {"Home"} className={`${tweetPopup ? 'blur' : ''}`}/>
-        
-        <SignInUpForm/>
+        <Feed  userName={userName} filter = {"Home"} className={`${tweetPopup ? 'blur' : ''}`}/>
+      }
+      
+      {/* Sign Up */}
+      {activeOption === "SignUp" &&
+        <SignUpForm handleSignUp={handleSignUp}/>
+      }
+
+      {/* Sign In */}
+      {activeOption === "SignIn" &&
+        <SignInForm handleSignIn={handleLogin}/>
       }
 
       {/* Explore */}
       {activeOption === "Explore" &&  
-        <Explore className={`${tweetPopup ? 'blur' : ''}`}/>
+        <Explore userName={userName} className={`${tweetPopup ? 'blur' : ''}`}/>
       }
 
       {/* Notifications */}
       {activeOption === "Notifications" &&
-        <Notifications className={`${tweetPopup ? 'blur' : ''}`}/>
+        <Notifications  userName={userName} className={`${tweetPopup ? 'blur' : ''}`}/>
       }
 
       {/* Bookmarks */}
       {activeOption === "Bookmarks" &&
-        <Bookmarks className={`${tweetPopup ? 'blur' : ''}`}/>
+        <Bookmarks  userName={userName} className={`${tweetPopup ? 'blur' : ''}`}/>
       }
 
       {/* States */}
       {activeOption === "States" &&
-        <States className={`${tweetPopup ? 'blur' : ''}`} />  
+        <States  userName={userName} className={`${tweetPopup ? 'blur' : ''}`} />  
       }
 
       {/* Profile */}
       {activeOption === "Profile" &&
-        <Profile className={`${tweetPopup ? 'blur' : ''}`}/>
+        <Profile  userName={userName} className={`${tweetPopup ? 'blur' : ''}`}/>
       }
 
       {/* Social */}
       {activeOption === "Social" &&
-        <Social className={`${tweetPopup ? 'blur' : ''}`}/>
+        <Social  userName={userName} className={`${tweetPopup ? 'blur' : ''}`}/>
       }
       
       {/* Account */}
       {activeOption === "Account" &&
-        <Account className={`${tweetPopup ? 'blur' : ''}`}/>
+        <Account  userName={userName} className={`${tweetPopup ? 'blur' : ''}`}/>
       }
 
       {/* HashTag */}
       {activeOption === "Hashtag" &&
-        <Feed filter = {HashTag} className={`${tweetPopup ? 'blur' : ''}`}/>
+        <Feed  userName={userName} filter = {HashTag} className={`${tweetPopup ? 'blur' : ''}`}/>
       }
 
 

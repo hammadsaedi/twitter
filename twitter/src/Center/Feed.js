@@ -9,7 +9,7 @@ import FeaturedPlayListIcon from '@mui/icons-material/FeaturedPlayList';
 import PeopleIcon from '@mui/icons-material/People';
 import Diversity1Icon from '@mui/icons-material/Diversity1';
 
-export default function Feed({filter}) {
+export default function Feed({userName, filter}) {
   const [activeOption, setActiveOption] = useState('For You');
 
   const handleOptionClick = (text) => {
@@ -23,10 +23,20 @@ export default function Feed({filter}) {
   return (
     <div className="feed">
         {/* Header */}
-        <Header text={filter} options={[option1, option2, option3]} handleOptionClick={handleOptionClick}/>
+        {
+          userName == "" &&
+          <Header text={filter}/>
+        }
+        {
+          userName != "" &&
+          <Header text={userName} options={[option1, option2, option3]} handleOptionClick={handleOptionClick}/>
+        }
 
         {/* TweetBox */}
-        <TweetBox />
+        {
+          userName != "" &&
+          <TweetBox />
+        }
 
         {/* Post */}
         <Tweet text="Hello World!"/>

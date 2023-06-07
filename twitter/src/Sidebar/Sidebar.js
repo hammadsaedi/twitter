@@ -14,7 +14,7 @@ import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import { Button } from '@mui/material';
 import LogoutIcon from '@mui/icons-material/Logout';
 
-export default function Sidebar({handleClick, handleTweet, handleLogout}) {
+export default function Sidebar({handleClick, handleTweet, handleLogout, login}) {
   const [activeOption, setActiveOption] = useState("Home");
 
   const handleOptionClick = (text) => {
@@ -49,25 +49,55 @@ export default function Sidebar({handleClick, handleTweet, handleLogout}) {
         {/* <SidebarOption active={activeOption === 'Notifications'}  text='Notifications' Icon={NotificationsIcon} onClick={() => handleOptionClick('Notifications')}  /> */}
 
         {/* Bookmark */}
-        <SidebarOption active={activeOption === 'Bookmarks'} text='Bookmarks' Icon={BookmarksIcon} onClick={() => handleOptionClick('Bookmarks')} />
+        {
+          login &&
+          <SidebarOption active={activeOption === 'Bookmarks'} text='Bookmarks' Icon={BookmarksIcon} onClick={() => handleOptionClick('Bookmarks')} />
+
+        }
 
         {/* Draft */}
-        <SidebarOption active={activeOption === 'States'} text='States' Icon={DraftsIcon} onClick={() => handleOptionClick('States')} />
+        {
+          login &&
+            <SidebarOption active={activeOption === 'States'} text='States' Icon={DraftsIcon} onClick={() => handleOptionClick('States')} />
+        }
 
-        {/* Profile */}
-        <SidebarOption active={activeOption === 'Profile'} text='Profile' Icon={PersonIcon}  onClick={() => handleOptionClick('Profile')}/>
+        {/* Profile */} {
+          login &&
+          <SidebarOption active={activeOption === 'Profile'} text='Profile' Icon={PersonIcon}  onClick={() => handleOptionClick('Profile')}/>
+        }
 
         {/* Social */}
-        <SidebarOption active={activeOption === 'Social'}  text='Social' Icon={ConnectWithoutContactIcon}  onClick={() => handleOptionClick('Social')}/>    
+        {
+          login &&
+           <SidebarOption active={activeOption === 'Social'}  text='Social' Icon={ConnectWithoutContactIcon}  onClick={() => handleOptionClick('Social')}/>    
+        }
         
-        {/* Account */}
-        <SidebarOption active={activeOption === 'Account'} text='Account' Icon={ManageAccountsIcon} onClick={() => handleOptionClick('Account')}/>
+        {/* Account */} 
+        {
+          login &&
+          <SidebarOption active={activeOption === 'Account'} text='Account' Icon={ManageAccountsIcon} onClick={() => handleOptionClick('Account')}/>
+        }
 
         {/* Button -> Logout */}
-        <SidebarOption text='Logout' Icon={LogoutIcon} onClick={() => handleLogoutClick('Logout')} />
+        {
+          login &&
+          <SidebarOption text='Logout' Icon={LogoutIcon} onClick={() => handleLogoutClick('Logout')} />
+        }
+        
+        {
+          !login &&
+          <SidebarOption text='Sign In' Icon={LogoutIcon} onClick={() => handleOptionClick('SignIn')} />
+        }
 
+        {
+          !login &&
+          <SidebarOption text='Sign Up' Icon={LogoutIcon} onClick={() => handleOptionClick('SignUp')} />
+        }
         {/* Button -> Tweet */}
-        <Button variant='outlined' className='sidebar__tweet' fullWidth onClick={() => handleTweetClick('Tweet')}>Tweet</Button>
+        {
+          login &&
+          <Button variant='outlined' className='sidebar__tweet' fullWidth onClick={() => handleTweetClick('Tweet')}>Tweet</Button>
+        }
     </div>
   )
 }

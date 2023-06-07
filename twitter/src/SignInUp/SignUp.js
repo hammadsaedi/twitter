@@ -1,28 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import '../Center/Feed.css'
 import Header from '../Header/Header'
-import HeaderOption from '../Header/HeaderOption'
 
 import './SignInUp.css'
 
-import FeaturedPlayListIcon from '@mui/icons-material/FeaturedPlayList';
-import PeopleIcon from '@mui/icons-material/People';
 
-
-const SignInUpForm = () => {
-  const [activeOption, setActiveOption] = useState("SignIn");
+const SignInUpForm = ({handleSignUp}) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [isFormValid, setIsFormValid] = useState(false);
-
-  let option1 = <HeaderOption text="SignIn" Icon={FeaturedPlayListIcon} />;
-  let option2 = <HeaderOption text="SignUp" Icon={PeopleIcon} />;
-
-  const handleOptionClick = (text) => {
-    setActiveOption(text);
-  };
 
   const handleNameChange = (e) => {
     const inputName = e.target.value;
@@ -45,7 +33,8 @@ const SignInUpForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Perform form submission logic here
+    handleSignUp(name, email, password);
+    // Perform form submission logic here 
   };
 
   useEffect(() => {
@@ -53,21 +42,24 @@ const SignInUpForm = () => {
     const isNameValid = name.trim() !== '';
     const isPasswordValid = password.length >= 6;
     const isConfirmPasswordValid = password === confirmPassword;
-    if(activeOption === 'SignIn') {
-      setIsFormValid(isEmailValid);
-    } else {
-      setIsFormValid(isEmailValid && isNameValid && isPasswordValid && isConfirmPasswordValid);
-    }
+
+    setIsFormValid(isEmailValid && isNameValid && isPasswordValid && isConfirmPasswordValid);
   }, [name, email, password, confirmPassword]);
   
+  useEffect(() => {
+    setName('');
+    setEmail('');
+    setPassword('');
+    setConfirmPassword('');
+  }, []);
 
+  
   return (
     <div className="feed">
       {/* Header */}
-      <Header text="" options={[option1, option2]} handleOptionClick={handleOptionClick} />
+      <Header text="Sign Up"/>
 
       <div className="SignInUp__container">
-        {activeOption === 'SignUp' && (
           
         <form onSubmit={handleSubmit}>
           <h5>Name</h5>
@@ -86,22 +78,6 @@ const SignInUpForm = () => {
             Sign In
           </button>
         </form>
-        )}
-
-        {activeOption === 'SignIn' && (
-          
-          <form onSubmit={handleSubmit}>
-            <h5>E-mail</h5>
-            <input type="email" value={email}  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" onChange={handleEmailChange} required />
-  
-            <h5>Password</h5>
-            <input type="password" value={password} onChange={handlePasswordChange} minLength={6} required />
-
-            <button type="submit" className="SignInUp__signInButton" disabled={!isFormValid}>
-              Sign In
-            </button>
-          </form>
-        )}
       </div>
     </div>
   );
