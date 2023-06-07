@@ -1,4 +1,4 @@
-import React from 'react';
+import {React, useState, useEffect}  from 'react';
 
 import TweetOption from './TweetOption';
 
@@ -13,13 +13,33 @@ import { Avatar, IconButton } from '@mui/material';
 
 import './Tweet.css'; // Import CSS file for styling
 
-export default function Tweet({loggedInUserid, tweet}) {
+// Counter is not working properly
+export default function Tweet({loggedInUserid, tweet}) { 
   const { _id, user_id, content, timestamp, likedby, votedby, retweeted_by, bookmarked_by , quoted_tweet, thread_parent, status } = tweet;
   
+  const [likedByLoggedUser, setLikedByLoggedUser] = useState(loggedInUserid ? likedby.includes(loggedInUserid) : false);
+  // const [upvotedByLoggedUser, setUpvotedByLoggedUser] = useState(loggedInUserid ? votedby.some((vote) => vote.id === loggedInUserid && vote.bool === true) : false);
+  // const [downvotedByLoggedUser, setDownvotedByLoggedUser] = useState(loggedInUserid ? votedby.some((vote) => vote.id === loggedInUserid && vote.bool === false) : false);
+  const [retweetedByLoggedUser, setRetweetedByLoggedUser] = useState(loggedInUserid ? retweeted_by.includes(loggedInUserid) : false);
+  const [bookmarkedByLoggedUser, setBookmarkedByLoggedUser] = useState(loggedInUserid ? bookmarked_by.includes(loggedInUserid) : false);
+
+  const [upvotedByLoggedUser, setUpvotedByLoggedUser] = useState(
+    loggedInUserid
+      ? votedby.some((vote) => vote.id === loggedInUserid && vote.bool === true)
+      : false
+  );
+
+  const [downvotedByLoggedUser, setDownvotedByLoggedUser] = useState(
+    loggedInUserid
+      ? votedby.some((vote) => vote.id === loggedInUserid && vote.bool === false)
+      : false
+  );
+
+  // Get user data from database via user_id
   const getUSerData = (user_id) => {
     const  user = {
-      username: 'hammadsaedi',
-      name: 'Hammad Saeedi',
+      authorUsername: 'hammadsaedi',
+      authorName: 'Hammad Saeedi',
     }
     return user;
   }
@@ -27,7 +47,6 @@ export default function Tweet({loggedInUserid, tweet}) {
   const {authorUsername, authorName} = getUSerData(user_id);
 
   const formattedTimestamp = new Date(timestamp).toLocaleString();
-  // const [date, time] = formattedTimestamp.split(', ');
 
   const likeCount = likedby ? likedby.length : 0;
   const upvoteCount = votedby ? votedby.filter((vote) => vote.bool === true).length : 0; // Fix: Filter votes with bool === true
@@ -35,13 +54,6 @@ export default function Tweet({loggedInUserid, tweet}) {
   const retweetCount = retweeted_by ? retweeted_by.length : 0;
   const bookedCount = bookmarked_by ? bookmarked_by.length : 0;
 
-
-
-  const data_for_option = {
-    _id,
-    loggedInUserid,
-    user_id,
-  } 
   const formatText = (text) => {
     // Regular expression to match "@" followed by any word characters (\w+)
     const mentionRegex = /@(\w+)/g;
@@ -55,6 +67,35 @@ export default function Tweet({loggedInUserid, tweet}) {
 
     return finalText;
   };
+
+  // if markedByUSer is true, then remove the user from the array
+  // if markedByUSer is false, then add the user to the array
+  const handleOptionClick = (type, markedByUSer) => { // type: like, upvote, downvote, retweet, comment, bookmark
+    if(type === 'like') {
+      setLikedByLoggedUser(!markedByUSer);
+      // update database
+    } else if (type === 'upvote') {
+      // Toggle upvote status
+      setUpvotedByLoggedUser(!upvotedByLoggedUser);
+      setDownvotedByLoggedUser(false); // Reset the downvote status
+    } else if (type === 'downvote') {
+      // Toggle downvote status
+      setDownvotedByLoggedUser(!downvotedByLoggedUser);
+      setUpvotedByLoggedUser(false); // Reset the upvote status
+    } else if(type === 'retweet') {
+      setRetweetedByLoggedUser(!markedByUSer);
+      // update database
+    } else if(type === 'bookmark') {
+      setBookmarkedByLoggedUser(!markedByUSer);
+      // update database
+    }
+    console.log('Option Clicked:', markedByUSer, type);
+    console.log('User:', loggedInUserid);
+    console.log(loggedInUserid ? likedby.includes(loggedInUserid) : false);
+  };
+
+  // useEffect(() => {
+  // }, []);
 
   return (
     <div className="tweet-post">
@@ -79,18 +120,46 @@ export default function Tweet({loggedInUserid, tweet}) {
         </p>
       </div>
       <div className="tweet-actions">
-        {/*Like*/}
-        <TweetOption data_for_option={data_for_option} Icon={FavoriteBorderOutlinedIcon} count={likeCount}/> 
-        {/*Upvote*/}
-        <TweetOption data_for_option={data_for_option} Icon={ThumbUpIcon} count={upvoteCount}/>
-        {/*DownVote*/}
-        <TweetOption data_for_option={data_for_option} Icon={ThumbDownIcon} count={downvoteCount}/>
-        {/*Retweet*/}
-        <TweetOption data_for_option={data_for_option} Icon={RepeatIcon} count={retweetCount}/>
-        {/*Comment*/}
-        {/* <TweetOption data_for_option={data_for_option} Icon={ChatBubbleOutlineIcon} count={7}/> */}
-        {/*Bookmark*/}
-        <TweetOption data_for_option={data_for_option} Icon={BookmarkBorderIcon} count={bookedCount}/>
+        {/* Like */}
+        <TweetOption
+          type="like"
+          markedByUser={likedByLoggedUser} // Corrected prop name
+          handleOptionClick={handleOptionClick}
+          Icon={FavoriteBorderOutlinedIcon}
+          count={likeCount}
+        />
+        {/* Upvote */}
+        <TweetOption
+          type="upvote"
+          markedByUser={upvotedByLoggedUser}
+          handleOptionClick={handleOptionClick}
+          Icon={ThumbUpIcon}
+          count={upvoteCount}
+        />
+        {/* DownVote */}
+        <TweetOption
+          type="downvote"
+          markedByUser={downvotedByLoggedUser}
+          handleOptionClick={handleOptionClick}
+          Icon={ThumbDownIcon}
+          count={downvoteCount}
+        />
+        {/* Retweet */}
+        <TweetOption
+          type="retweet"
+          markedByUser={retweetedByLoggedUser}
+          handleOptionClick={handleOptionClick}
+          Icon={RepeatIcon}
+          count={retweetCount}
+        />
+        {/* Bookmark */}
+        <TweetOption
+          type="bookmark"
+          markedByUser={bookmarkedByLoggedUser}
+          handleOptionClick={handleOptionClick}
+          Icon={BookmarkBorderIcon}
+          count={bookedCount}
+        />
       </div>
     </div>
   );

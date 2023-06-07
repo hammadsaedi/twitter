@@ -32,3 +32,7 @@
     font-size: 15px;
     color: var(--twitter-text-color);
 }
+
+.icon_marked {
+    color: var(--twitter-color);
+}

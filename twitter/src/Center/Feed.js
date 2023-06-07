@@ -9,7 +9,7 @@ import FeaturedPlayListIcon from '@mui/icons-material/FeaturedPlayList';
 import PeopleIcon from '@mui/icons-material/People';
 import Diversity1Icon from '@mui/icons-material/Diversity1';
 
-export default function Feed({loggedInUserid, filter}) {
+export default function Feed({userName, filter}) {
   const [activeOption, setActiveOption] = useState('For You');
   const [tweets, setTweets] = useState([]);
 
@@ -28,6 +28,10 @@ export default function Feed({loggedInUserid, filter}) {
         { id: 301, bool: true },
         { id: 302, bool: false },
       ],
+      bookmarked_by: [
+        { id: 305, bool: false },
+        { id: 306, bool: false },
+      ],
       retweeted_by: [],
       quoted_tweet: null,
       thread_parent: null,
@@ -43,6 +47,10 @@ export default function Feed({loggedInUserid, filter}) {
         { id: 303, bool: true },
         { id: 304, bool: true },
       ],
+      bookmarked_by: [
+        { id: 305, bool: false },
+        { id: 306, bool: false },
+      ],
       retweeted_by: [101],
       quoted_tweet: null,
       thread_parent: null,
@@ -53,8 +61,12 @@ export default function Feed({loggedInUserid, filter}) {
       user_id: 103,
       content: 'I am working on a new project. Excited!',
       timestamp: '2023-06-07T12:00:00Z',
-      likedby: [206, 207, 208],
+      likedby: [101, 207, 208],
       votedby: [
+        { id: 305, bool: false },
+        { id: 306, bool: false },
+      ],
+      bookmarked_by: [
         { id: 305, bool: false },
         { id: 306, bool: false },
       ],
@@ -87,6 +99,13 @@ export default function Feed({loggedInUserid, filter}) {
     }
   };
 
+  const getUSerId = (username) => {
+    // implement this function to get the user id from the username
+    return 101;
+  };
+
+  const user_id = getUSerId(userName);
+
   let option1 = <HeaderOption text="For You" Icon={FeaturedPlayListIcon} />;
   let option2 = <HeaderOption text="Following" Icon={PeopleIcon} />;
   let option3 = <HeaderOption text="Circle" Icon={Diversity1Icon} />;
@@ -117,7 +136,7 @@ export default function Feed({loggedInUserid, filter}) {
 
          {/* Render the fetched tweets */}
         {tweets.map((tweet) => (
-          <Tweet tweet={tweet} />
+          <Tweet loggedInUserid={user_id} tweet={tweet} />
         ))}
     </div>
   )
