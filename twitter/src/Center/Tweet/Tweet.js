@@ -13,7 +13,30 @@ import { Avatar, IconButton } from '@mui/material';
 
 import './Tweet.css'; // Import CSS file for styling
 
-export default function Tweet({text}) {
+export default function Tweet({tweet}) {
+  const { _id, user_id, content, timestamp, likedby, votedby, retweeted_by, bookmarked_by , quoted_tweet, thread_parent, status } = tweet;
+
+  const getUSerData = (user_id) => {
+    const  user = {
+      username: 'hammadsaedi',
+      name: 'Hammad Saeedi',
+    }
+    return user;
+  }
+
+  const {username, name} = getUSerData(user_id);
+
+  const formattedTimestamp = new Date(timestamp).toLocaleString();
+  // const [date, time] = formattedTimestamp.split(', ');
+
+  const likeCount = likedby ? likedby.length : 0;
+  const upvoteCount = votedby ? votedby.filter((vote) => vote.bool).length : 0;
+  const downvoteCount = votedby ? votedby.filter((vote) => !vote.bool).length : 0;
+  const retweetCount = retweeted_by ? retweeted_by.length : 0;
+  const bookedCount = bookmarked_by ? bookmarked_by.length : 0;
+
+
+
 
   const formatText = (text) => {
     // Regular expression to match "@" followed by any word characters (\w+)
@@ -35,11 +58,11 @@ export default function Tweet({text}) {
         <Avatar src="https://kajabi-storefronts-production.global.ssl.fastly.net/kajabi-storefronts-production/themes/284832/settings_images/rLlCifhXRJiT0RoN2FjK_Logo_roundbackground_black.png" />
         <div className="tweet-info">
           <div className='tweet-info-author'> 
-            <h4 className="tweet-name">Hammad Saeedi</h4>
-            <p className="tweet-username">@hammadsaedi</p>
+            <h4 className="tweet-name">{name}</h4>
+            <p className="tweet-username">@{username}</p>
           </div>          
 
-          <p className="tweet-time">12m ago</p>
+          <p className="tweet-time">{formattedTimestamp}</p>
         </div>
 
         <IconButton className="tweet-options" aria-label="More options">
@@ -48,16 +71,16 @@ export default function Tweet({text}) {
       </div>
       
       <div className="tweet-content">
-        <p dangerouslySetInnerHTML={{ __html: formatText(text) }}>
+        <p dangerouslySetInnerHTML={{ __html: formatText(content) }}>
         </p>
       </div>
       <div className="tweet-actions">
-        <TweetOption Icon={FavoriteBorderOutlinedIcon} count={10}/>
-        <TweetOption Icon={ThumbUpIcon} count={5}/>
-        <TweetOption Icon={ThumbDownIcon} count={2}/>
-        <TweetOption Icon={RepeatIcon} count={3}/>
+        <TweetOption Icon={FavoriteBorderOutlinedIcon} count={likeCount}/>
+        <TweetOption Icon={ThumbUpIcon} count={(upvoteCount).length}/>
+        <TweetOption Icon={ThumbDownIcon} count={(downvoteCount).length}/>
+        <TweetOption Icon={RepeatIcon} count={retweetCount}/>
         <TweetOption Icon={ChatBubbleOutlineIcon} count={7}/>
-        <TweetOption Icon={BookmarkBorderIcon} count={1}/>
+        <TweetOption Icon={BookmarkBorderIcon} count={bookedCount}/>
       </div>
     </div>
   );
