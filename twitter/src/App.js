@@ -32,7 +32,7 @@ function App() {
 
   const handleLogin = (email, password) => {
     if (email === 'faoqzuhair@gmail.com' && password === 'admin12345'){
-      setUserName("faoqzuhair");
+      setUserName("faoqzuhair"); //userID
       setLogin(true);
       setActiveOption("Home");
     } else {

@@ -9,7 +9,7 @@ import FeaturedPlayListIcon from '@mui/icons-material/FeaturedPlayList';
 import PeopleIcon from '@mui/icons-material/People';
 import Diversity1Icon from '@mui/icons-material/Diversity1';
 
-export default function Feed({userName, filter}) {
+export default function Feed({loggedInUserid, filter}) {
   const [activeOption, setActiveOption] = useState('For You');
   const [tweets, setTweets] = useState([]);
 
