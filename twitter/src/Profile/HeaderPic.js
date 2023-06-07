@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function HeaderPic() {
   return (
-    <div>        
+    <div className='headerPic'>        
         <img
             alt=""
             draggable="true"

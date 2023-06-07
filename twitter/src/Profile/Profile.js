@@ -29,6 +29,7 @@ export default function Profile() {
   return (
     <div className="feed">
         {/* Header */}
+        <Header text="Profile" activeOption={activeOption} handleOptionClick={handleOptionClick} />
         <div className="header-wrapper">
           <HeaderPic />
           <div className="profile-pic-wrapper">

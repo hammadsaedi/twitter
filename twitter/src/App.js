@@ -13,6 +13,8 @@ import Bookmarks from './Bookmarks/Bookmarks';
 import Explore from './Explore/Explore';
 import Notifications from './Notifications/Notifications';
 import Profile from './Profile/Profile';
+import SignInUpForm from './SignInUp/SignInUp';
+
 function App() {
   const [activeOption, setActiveOption] = useState("Home");
 
@@ -22,34 +24,12 @@ function App() {
 
   const [HashTag, setHashTag] = useState("#Twitter");
 
-
+  
   const handleOption = (option) => {
     // updateOpt(option);
     setActiveOption(option);
     console.log('Selected Option:', option, ' FROM App.js');
   };
-
-  // const updateOpt = (option) => {
-  //   if (option === "Home") {
-  //     setActiveOption('Home');
-  //   } else if (option === "Explore") {
-  //     setActiveOption('Explore');
-  //   } else if (option === "Notifications") {
-  //     setActiveOption('Notifications');
-  //   } else if (option === "Bookmarks") {
-  //     setActiveOption('Bookmarks');
-  //   } else if (option === "States") {
-  //     setActiveOption('States');
-  //   } else if (option === "Social") { 
-  //     setActiveOption('Social');
-  //   } else if (option === "Profile") {
-  //     setActiveOption('Profile');
-  //   } else if (option === "Account") {
-  //     setActiveOption('Account');
-  //   } else {
-  //     console.log('Error: No Option Selected');
-  //   }
-  // };
 
   const handleTweet = () => {
     setTweetPopup(!tweetPopup);
@@ -68,7 +48,7 @@ function App() {
 
   return (
     <div className='App'>
-      
+
       {tweetPopup && (
         <>
           <div className="overlay" onClick={handleTweet}></div>
@@ -102,7 +82,9 @@ function App() {
 
       {/* Feed */}
       {activeOption === "Home" &&
-        <Feed filter = {"Home"} className={`${tweetPopup ? 'blur' : ''}`}/>
+        // <Feed filter = {"Home"} className={`${tweetPopup ? 'blur' : ''}`}/>
+        
+        <SignInUpForm/>
       }
 
       {/* Explore */}

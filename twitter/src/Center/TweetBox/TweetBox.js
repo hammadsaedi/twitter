@@ -42,7 +42,7 @@ export default function TweetBox() {
                 <TweetBoxOption Icon={SaveAsOutlinedIcon} className='SaveAsDraft'/>
                 <span className="char-count">{140 - tweetText.length}</span>
             </div>
-            <Button type="submit" className="tweetBox__tweetButton" disabled={isExceeded}>
+            <Button type="submit" className="tweetBox__tweetButton"  disabled={isExceeded}>
             Tweet
             </Button>
         </div>

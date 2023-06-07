@@ -4,7 +4,7 @@ import Trend from './Trend'
 
 export default function Widgets({handleClick, handleTrendClick}) {
   const trends = [
-    { rank: 1, name: 'ڈاکٹر عافیہ کو رہا کرو#', count: 1000},
+    { rank: 1, name: 'ڈاکٹر_عافیہ_کو_رہا_کرو#', count: 1000},
     { rank: 2, name: '#Bitcoin', count: 800},
     { rank: 3, name: '#ImranKhan', count: 600},
     { rank: 4, name: '#PDM', count: 600}, 

@@ -1,0 +1,81 @@
+/* CSS for SignInUp__container */
+.SignInUp__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: var(--twitter-background);
+    border-radius: 10px;
+}
+  
+  .SignInUp__container form {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: center;
+
+  }
+  
+  .SignInUp__container h5 {
+    margin:  5px;
+    margin-left: 2px;
+    color: var(--twitter-text-color);
+    font-size: 15px;
+  }
+
+  .SignInUp__container input[type="email"],
+  .SignInUp__container input[type="text"],
+  .SignInUp__container input[type="password"] {
+    padding: 7px;
+    width: 100%;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    border: 1px solid var(--twitter-color);
+    resize: vertical;
+    color: var( --twitter-text-color);
+    font-family: code;
+}
+  
+.SignInUp__container button.SignInUp__signInButton {
+    background-color: var(--twitter-color) !important;
+    border: none;
+    color: white !important;
+    font-weight: 800 !important;
+    text-transform: inherit !important;
+    border-radius: 15px !important;
+    width: 80px;
+    height: 35px !important;
+    margin-left: auto !important;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+
+  .SignInUp__container button.SignInUp__signInButton:disabled {
+    background-color: var(--twitter-background-hover) !important;
+    color: var(--twitter-color) !important;
+    /* cursor: not-allowed !important; */
+    border: solid 1px var(--twitter-color) !important;
+    /* border-color: var(--twitter-color) !important; */
+  }
+  
+  
+  /* Additional CSS for button alignment */
+  .SignInUp__container form {
+    width: 250px;
+  }
+
+.SignInUp__container input {
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    border: 1px solid var(--twitter-background);
+    resize: vertical;
+  }
+  
+  .SignInUp__container input:focus {
+    outline: none; 
+    border: 2px solid var(--twitter-color);
+  }

@@ -1,21 +1,21 @@
-.header-wrapper {
+/* .header-wrapper {
     display: flex;
     flex-direction: row;
     align-items: flex-end;
-  }
+  } */
   
-  .profile-pic-wrapper {
+  /* .profile-pic-wrapper {
     position: relative;
-  }
+  } */
   
-  .edit-profile-button-wrapper {
+  /* .edit-profile-button-wrapper {
     position: absolute;
     bottom: 0;
     left: 0;
     z-index: 1;
   }
-  
-  .edit-profile-button {
+   */
+  /* .edit-profile-button {
     margin-top: 8px;
   }
-  
+   */
