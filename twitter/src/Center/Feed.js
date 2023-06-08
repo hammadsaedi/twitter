@@ -16,6 +16,7 @@ export default function Feed({user_id, filter }) {
     setActiveOption(text);
   };
 
+  
   const dummyTweets = [
     {
       _id: 1,
@@ -89,15 +90,17 @@ export default function Feed({user_id, filter }) {
 
 const fetchTweetsFromDatabase = async () => {
   try {
-    const response = await fetch('http://localhost:8080/demo');
-    const data = await response.json();
+    // const response = await fetch('http://localhost:8080/demo');
+    const data = dummyTweets;
     return data;
   } catch (error) {
     throw new Error('Failed to fetch tweets from the database.');
   }
 };
 
-
+  let option1 = <HeaderOption text="For Me" Icon={FeaturedPlayListIcon} />;
+  let option2 = <HeaderOption text="Following" Icon={PeopleIcon} />;
+  let option3 = <HeaderOption text="Circle" Icon={Diversity1Icon} />;
   return (
     <div className="feed">
       {/* Header */}
