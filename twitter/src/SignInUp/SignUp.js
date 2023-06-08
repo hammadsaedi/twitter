@@ -17,21 +17,31 @@ const SignInUpForm = ({handleSignUp}) => {
     if (inputName.length <= 20) {
       setName(inputName);
     }
+    console.log(e.target.value);
   };
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
+    console.log(e.target.value);
   };
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
+    console.log(e.target.value);
+
   };
 
   const handleConfirmPasswordChange = (e) => {
     setConfirmPassword(e.target.value);
+    console.log(e.target.value);
+
   };
 
   const handleSubmit = (e) => {
+
+    console.log("I'm here");
+    console.log(name, email, password);
+
     e.preventDefault();
     handleSignUp(name, email, password);
     // Perform form submission logic here 
