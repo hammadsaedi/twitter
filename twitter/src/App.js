@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import { postDataToEndpoint } from './db';
 
 import './App.css';
 import Sidebar from './Sidebar/Sidebar';
@@ -17,7 +16,6 @@ import Profile from './Profile/Profile';
 
 import SignInForm from './SignInUp/SignIn';
 import SignUpForm from './SignInUp/SignUp';
-
 
 function App() {
   const [login, setLogin] = useState(true);
@@ -49,22 +47,19 @@ function App() {
     console.log('Signing Up....');
     setLogin(true);
     setActiveOption("Home");
-    // postDataToEndpoint(data);
-    const user = {
-      name: name,
-      email: email,
-      password: password
-    };
-
-    // Call the postDataToEndpoint function to send the user data to the endpoint
-    // await postDataToEndpoint(user, "user");
-
-    console.log(name, email, password);
+    const response = await fetch('http://localhost:8080/Twitter', {
+      method: 'POST',
+      body: JSON.stringify({name}),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    const data = await response.json();
+    console.log(data);
   }
+  
 
-  // useEffect(() => {
-  //   const document = { content: 'This is a sample document.' };
-  // }, []);
+
   
   const handleOption = (option) => {
     // updateOpt(option);
@@ -154,7 +149,7 @@ function App() {
 
       {/* States */}
       {activeOption === "States" &&
-        <States userName={userName} className={`${tweetPopup ? 'blur' : ''}`} />  
+        <States  userName={userName} className={`${tweetPopup ? 'blur' : ''}`} />  
       }
 
       {/* Profile */}

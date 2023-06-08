@@ -8,7 +8,7 @@ import FeaturedPlayListIcon from '@mui/icons-material/FeaturedPlayList';
 import PeopleIcon from '@mui/icons-material/People';
 import Diversity1Icon from '@mui/icons-material/Diversity1';
 
-export default function Feed({user_id, filter }) {
+export default function Feed({ filter }) {
   const [activeOption, setActiveOption] = useState('For You');
   const [tweets, setTweets] = useState([]);
 
@@ -16,66 +16,11 @@ export default function Feed({user_id, filter }) {
     setActiveOption(text);
   };
 
-  const dummyTweets = [
-    {
-      _id: 1,
-      user_id: 101,
-      content: 'Hello world!',
-      timestamp: '2023-06-07T10:30:00Z',
-      likedby: [201, 202, 203],
-      votedby: [
-        { id: 301, bool: true },
-        { id: 302, bool: false },
-      ],
-      bookmarked_by: [
-        { id: 305, bool: false },
-        { id: 306, bool: false },
-      ],
-      retweeted_by: [],
-      quoted_tweet: null,
-      thread_parent: null,
-      status: 'posted',
-    },
-    {
-      _id: 2,
-      user_id: 102,
-      content: 'Just posted a new blog article. Check it out!',
-      timestamp: '2023-06-07T11:15:00Z',
-      likedby: [204, 205],
-      votedby: [
-        { id: 303, bool: true },
-        { id: 304, bool: true },
-      ],
-      bookmarked_by: [
-        { id: 305, bool: false },
-        { id: 306, bool: false },
-      ],
-      retweeted_by: [101],
-      quoted_tweet: null,
-      thread_parent: null,
-      status: 'posted',
-    },
-    {
-      _id: 3,
-      user_id: 103,
-      content: 'I am working on a new project. Excited!',
-      timestamp: '2023-06-07T12:00:00Z',
-      likedby: [101, 207, 208],
-      votedby: [
-        { id: 305, bool: false },
-        { id: 306, bool: false },
-      ],
-      bookmarked_by: [
-        { id: 305, bool: false },
-        { id: 306, bool: false },
-      ],
-      retweeted_by: [],
-      quoted_tweet: null,
-      thread_parent: null,
-      status: 'draft',
-    },
-  ];
   
+  let option1 = <HeaderOption text="For You" Icon={FeaturedPlayListIcon} />;
+  let option2 = <HeaderOption text="Following" Icon={PeopleIcon} />;
+  let option3 = <HeaderOption text="Circle" Icon={Diversity1Icon} />;
+
   useEffect(() => {
     
     fetchTweetsFromDatabase()
@@ -106,11 +51,9 @@ const fetchTweetsFromDatabase = async () => {
       {/* TweetBox */}
       <TweetBox />
 
-        {/* Post */}
-         {/* Render the fetched tweets */}
-        {tweets.map((tweet) => (
-          <Tweet loggedInUserid={user_id} tweet={tweet} />
-        ))}
+      {/* {tweets.map((tweet) => (
+        <Tweet key={tweet.id} text={tweet.text} />
+      ))} */}
     </div>
   );
 }

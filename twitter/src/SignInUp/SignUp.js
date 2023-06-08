@@ -10,52 +10,38 @@ const SignInUpForm = ({handleSignUp}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [isFormValid, setIsFormValid] = useState(false);
+  const [isFormValid, setIsFormValid] = useState(true);
+  const [users, setUsers] = useState([]);
 
   const handleNameChange = (e) => {
     const inputName = e.target.value;
     if (inputName.length <= 20) {
       setName(inputName);
     }
+    // setName(e.target.value);
   };
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
-    console.log(e.target.value);
   };
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
-    console.log(e.target.value);
-
   };
 
   const handleConfirmPasswordChange = (e) => {
     setConfirmPassword(e.target.value);
-    console.log(e.target.value);
-
   };
 
-  const handleSubmit = (e) => {
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   
+  //   // Perform form submission logic here 
+  // };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
-  
-    console.log("I'm here");
-    console.log(name, email, password);
-      
-        console.log("working");
-        const response = await fetch('http://localhost:8080/Twitter', {
-          
-          method: 'POST',
-          body: JSON.stringify({ name, email, password }),
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
-        console.log("working 2")
-        const data = await response.json();
-        console.log(data);
-      
+    handleSignUp(name, email, password);
     
   };
   
@@ -64,24 +50,24 @@ const SignInUpForm = ({handleSignUp}) => {
   //     method:'GET',
   //   })
   //  const data = await response.json();
-  //  setTweet(data);
+  //  setUsers(data);
   // }
 
-  useEffect(() => {
-    const isEmailValid = /\S+@\S+\.\S+/.test(email);
-    const isNameValid = name.trim() !== '';
-    const isPasswordValid = password.length >= 6;
-    const isConfirmPasswordValid = password === confirmPassword;
-
-    setIsFormValid(isEmailValid && isNameValid && isPasswordValid && isConfirmPasswordValid);
-  }, [name, email, password, confirmPassword]);
+  // useEffect(() => {
+  //   const isEmailValid = /\S+@\S+\.\S+/.test(email);
+  //   const isNameValid = name.trim() !== '';
+  //   const isPasswordValid = password.length >= 6;
+  //   const isConfirmPasswordValid = password === confirmPassword;
+    
+  //   setIsFormValid(isEmailValid && isNameValid && isPasswordValid && isConfirmPasswordValid);
+  // }, [name, email, password, confirmPassword]);
   
-  useEffect(() => {
-    setName('');
-    setEmail('');
-    setPassword('');
-    setConfirmPassword('');
-  }, []);
+  // useEffect(() => {
+  //   setName('');
+  //   setEmail('');
+  //   setPassword('');
+  //   setConfirmPassword('');
+  // }, []);
 
   
   return (
