@@ -211,7 +211,6 @@ export default function Bookmarks({userName}) {
     return bookmarkedTweets;
   };
 
-
   
   return (
     <div className="feed">

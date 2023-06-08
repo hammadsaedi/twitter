@@ -43,21 +43,19 @@ function App() {
 
   const handleSignUp = async (name, email, password) => {
     // push to database
-    setUserName(email.split('@')[0]);
     console.log('Signing Up....');
-    setLogin(true);
-    setActiveOption("Home");
     // postDataToEndpoint(data);
     const user = {
       name: name,
       email: email,
       password: password
     };
-
-    // Call the postDataToEndpoint function to send the user data to the endpoint
-    // await postDataToEndpoint(user, "user");
-
+    
     console.log(name, email, password);
+
+    setLogin(true);
+    setActiveOption("Home");
+    setUserName(email.split('@')[0]);
   }
   
 

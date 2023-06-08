@@ -9,15 +9,14 @@ const SignInUpForm = ({handleSignUp}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [isFormValid, setIsFormValid] = useState(true);
-  const [users, setUsers] = useState([]);
+  const [isFormValid, setIsFormValid] = useState(false);
+  // const [users, setUsers] = useState([]);
 
   const handleNameChange = (e) => {
     const inputName = e.target.value;
     if (inputName.length <= 20) {
       setName(inputName);
     }
-    // setName(e.target.value);
   };
 
   const handleEmailChange = (e) => {
@@ -35,8 +34,7 @@ const SignInUpForm = ({handleSignUp}) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     handleSignUp(name, email, password);  
-
-
+    console.log('Signing Up....');
   };
   
 
