@@ -11,15 +11,18 @@ import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import { Avatar, IconButton } from '@mui/material';
 
+
 import './Tweet.css'; // Import CSS file for styling
 
 // Counter is not working properly
 export default function Tweet({loggedInUserid, tweet}) { 
+  const [ghost, setGhost] = useState(false);
   const { _id, user_id, content, timestamp, likedby, votedby, retweeted_by, bookmarked_by , quoted_tweet, thread_parent, status } = tweet;
   
   const [likedByLoggedUser, setLikedByLoggedUser] = useState(loggedInUserid ? likedby.includes(loggedInUserid) : false);
   const [retweetedByLoggedUser, setRetweetedByLoggedUser] = useState(loggedInUserid ? retweeted_by.includes(loggedInUserid) : false);
   const [bookmarkedByLoggedUser, setBookmarkedByLoggedUser] = useState(loggedInUserid ? bookmarked_by.includes(loggedInUserid) : false);
+
 
   const [upvotedByLoggedUser, setUpvotedByLoggedUser] = useState(
     loggedInUserid
@@ -33,6 +36,22 @@ export default function Tweet({loggedInUserid, tweet}) {
       : false
   );
 
+  const [tweetStatus, setTweetStatus] = useState(status);
+  
+  let btn1;
+  let btn2;
+
+  if (tweetStatus === "posted"){
+    btn1 = "archive";
+    btn2 = "delete"
+  } else if (tweetStatus === "draft"){
+    btn1 = "post";
+    btn2 = "delete"
+  } else if (tweetStatus === "archive"){
+    btn1 = "public";
+    btn2 = "delete"
+  }
+
   // Get user data from database via user_id
   const getUSerData = (user_id) => {
     const  user = {
@@ -40,6 +59,14 @@ export default function Tweet({loggedInUserid, tweet}) {
       authorName: 'Hammad Saeedi',
     }
     return user;
+  }
+
+  const handleTweetStatus = (option) => {
+    if (option === "public") 
+      option = "post"
+    setTweetStatus(option);
+    setGhost(true);
+    // update database
   }
 
   const {authorUsername, authorName} = getUSerData(user_id);
@@ -97,8 +124,10 @@ export default function Tweet({loggedInUserid, tweet}) {
   // useEffect(() => {
   // }, []);
 
+  
+
   return (
-    <div className="tweet-post">
+    <div className={ghost ?"ghost tweet-post" :"tweet-post"}>
       <div className="tweet-header">
         <Avatar src="https://kajabi-storefronts-production.global.ssl.fastly.net/kajabi-storefronts-production/themes/284832/settings_images/rLlCifhXRJiT0RoN2FjK_Logo_roundbackground_black.png" />
         <div className="tweet-info">
@@ -109,10 +138,16 @@ export default function Tweet({loggedInUserid, tweet}) {
 
           <p className="tweet-time">{formattedTimestamp}</p>
         </div>
+        <div class="dropdown">
+          <IconButton className="tweet-options dropbtn">
+            <MoreHorizIcon />
+          </IconButton>
+          <div className="dropdown-content">
+            <a href="#" onClick={() => handleTweetStatus(btn1)}>{btn1}</a>
+            <a href="#" onClick={() => handleTweetStatus(btn2)}>{btn2}</a>
+          </div>
 
-        <IconButton className="tweet-options" aria-label="More options">
-          <MoreHorizIcon />
-        </IconButton>
+        </div>
       </div>
       
       <div className="tweet-content">
