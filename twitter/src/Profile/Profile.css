@@ -19,3 +19,25 @@
     margin-top: 8px;
   }
    */
+
+   .profile-details {
+    background-color: #f2f2f2;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .profile-details h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .profile-details p {
+    margin-bottom: 5px;
+  }
+  
+  .profile-details strong {
+    font-weight: bold;
+  }
+
+  
