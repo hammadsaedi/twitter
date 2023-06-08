@@ -18,9 +18,9 @@ import SignInForm from './SignInUp/SignIn';
 import SignUpForm from './SignInUp/SignUp';
 
 function App() {
-  const [login, setLogin] = useState(false);
+  const [login, setLogin] = useState(true);
 
-  const [userName, setUserName] = useState('');
+  const [userName, setUserName] = useState('101');
 
   const [activeOption, setActiveOption] = useState("Home");
 
@@ -32,7 +32,7 @@ function App() {
 
   const handleLogin = (email, password) => {
     if (email === 'faoqzuhair@gmail.com' && password === 'admin12345'){
-      setUserName("faoqzuhair");
+      setUserName("faoqzuhair"); //userID
       setLogin(true);
       setActiveOption("Home");
     } else {

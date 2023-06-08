@@ -18,10 +18,18 @@ const SignInForm = ({handleSignIn}) => {
   };
 
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     handleSignIn(email, password);
-    // Perform form submission logic here
+    const response = await fetch('http://localhost:8080/Twitter', {
+        method: 'POST',
+        body: JSON.stringify({ email, password }), // Include the tweetText value in the request body
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      const data = await response.json();
+      console.log(data);
   };
 
   useEffect(() => {

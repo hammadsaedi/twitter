@@ -19,13 +19,16 @@ export default function TweetBox() {
     const handleChange = (e) => {
       setTweetText(e.target.value);
     };
+
     
     const handleSubmit = async (e) => {
-      
       e.preventDefault();
       const response = await fetch('http://localhost:8080/Twitter', {
         method: 'POST',
-        body: JSON.stringify({ tweetText }), // Include the tweetText value in the request body
+
+        // body: JSON.stringify({ name, email, password }),
+
+        body: JSON.stringify({ tweetText,  tweetText}), // Include the tweetText value in the request body
         headers: {
           'Content-Type': 'application/json'
         }
