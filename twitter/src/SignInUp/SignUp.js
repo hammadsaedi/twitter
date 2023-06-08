@@ -9,52 +9,53 @@ const SignInUpForm = ({handleSignUp}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [isFormValid, setIsFormValid] = useState(false);
+  const [isFormValid, setIsFormValid] = useState(true);
+  const [users, setUsers] = useState([]);
 
   const handleNameChange = (e) => {
     const inputName = e.target.value;
     if (inputName.length <= 20) {
       setName(inputName);
     }
+    // setName(e.target.value);
   };
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
-    console.log(e.target.value);
   };
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
-    console.log(e.target.value);
-
   };
 
   const handleConfirmPasswordChange = (e) => {
     setConfirmPassword(e.target.value);
-    console.log(e.target.value);
-
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     handleSignUp(name, email, password);  
+
+
   };
   
+
+
   useEffect(() => {
     const isEmailValid = /\S+@\S+\.\S+/.test(email);
     const isNameValid = name.trim() !== '';
     const isPasswordValid = password.length >= 6;
-    const isConfirmPasswordValid = String(password) === String(confirmPassword);
+    const isConfirmPasswordValid = password === confirmPassword;
 
     setIsFormValid(isEmailValid && isNameValid && isPasswordValid && isConfirmPasswordValid);
   }, [name, email, password, confirmPassword]);
   
-  useEffect(() => {
-    setName('');
-    setEmail('');
-    setPassword('');
-    setConfirmPassword('');
-  }, []);
+  // useEffect(() => {
+  //   setName('');
+  //   setEmail('');
+  //   setPassword('');
+  //   setConfirmPassword('');
+  // }, []);
 
   
   return (

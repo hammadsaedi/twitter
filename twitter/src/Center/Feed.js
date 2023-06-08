@@ -8,7 +8,7 @@ import FeaturedPlayListIcon from '@mui/icons-material/FeaturedPlayList';
 import PeopleIcon from '@mui/icons-material/People';
 import Diversity1Icon from '@mui/icons-material/Diversity1';
 
-export default function Feed({user_id, filter }) {
+export default function Feed({ filter }) {
   const [activeOption, setActiveOption] = useState('For You');
   const [tweets, setTweets] = useState([]);
 
@@ -16,7 +16,6 @@ export default function Feed({user_id, filter }) {
     setActiveOption(text);
   };
 
-  
   const dummyTweets = [
     {
       _id: 1,
@@ -109,11 +108,9 @@ const fetchTweetsFromDatabase = async () => {
       {/* TweetBox */}
       <TweetBox />
 
-        {/* Post */}
-         {/* Render the fetched tweets */}
-        {tweets.map((tweet) => (
-          <Tweet loggedInUserid={user_id} tweet={tweet} />
-        ))}
+      {/* {tweets.map((tweet) => (
+        <Tweet key={tweet.id} text={tweet.text} />
+      ))} */}
     </div>
   );
 }

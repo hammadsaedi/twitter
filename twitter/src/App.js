@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import { postDataToEndpoint } from './db';
 
 import './App.css';
 import Sidebar from './Sidebar/Sidebar';
@@ -17,7 +16,6 @@ import Profile from './Profile/Profile';
 
 import SignInForm from './SignInUp/SignIn';
 import SignUpForm from './SignInUp/SignUp';
-
 
 function App() {
   const [login, setLogin] = useState(true);
@@ -60,13 +58,10 @@ function App() {
     // await postDataToEndpoint(user, "user");
 
     console.log(name, email, password);
-    console.log("I'm here");
-
   }
+  
 
-  // useEffect(() => {
-  //   const document = { content: 'This is a sample document.' };
-  // }, []);
+
   
   const handleOption = (option) => {
     // updateOpt(option);
@@ -156,7 +151,7 @@ function App() {
 
       {/* States */}
       {activeOption === "States" &&
-        <States userName={userName} className={`${tweetPopup ? 'blur' : ''}`} />  
+        <States  userName={userName} className={`${tweetPopup ? 'blur' : ''}`} />  
       }
 
       {/* Profile */}
