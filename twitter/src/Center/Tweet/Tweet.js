@@ -18,8 +18,6 @@ export default function Tweet({loggedInUserid, tweet}) {
   const { _id, user_id, content, timestamp, likedby, votedby, retweeted_by, bookmarked_by , quoted_tweet, thread_parent, status } = tweet;
   
   const [likedByLoggedUser, setLikedByLoggedUser] = useState(loggedInUserid ? likedby.includes(loggedInUserid) : false);
-  // const [upvotedByLoggedUser, setUpvotedByLoggedUser] = useState(loggedInUserid ? votedby.some((vote) => vote.id === loggedInUserid && vote.bool === true) : false);
-  // const [downvotedByLoggedUser, setDownvotedByLoggedUser] = useState(loggedInUserid ? votedby.some((vote) => vote.id === loggedInUserid && vote.bool === false) : false);
   const [retweetedByLoggedUser, setRetweetedByLoggedUser] = useState(loggedInUserid ? retweeted_by.includes(loggedInUserid) : false);
   const [bookmarkedByLoggedUser, setBookmarkedByLoggedUser] = useState(loggedInUserid ? bookmarked_by.includes(loggedInUserid) : false);
 
@@ -72,7 +70,7 @@ export default function Tweet({loggedInUserid, tweet}) {
   // if markedByUSer is false, then add the user to the array
   const handleOptionClick = (type, markedByUSer) => { // type: like, upvote, downvote, retweet, comment, bookmark
     if(type === 'like') {
-      setLikedByLoggedUser(!markedByUSer);
+      setLikedByLoggedUser(!likedByLoggedUser);
       // update database
     } else if (type === 'upvote') {
       // Toggle upvote status
@@ -83,11 +81,13 @@ export default function Tweet({loggedInUserid, tweet}) {
       setDownvotedByLoggedUser(!downvotedByLoggedUser);
       setUpvotedByLoggedUser(false); // Reset the upvote status
     } else if(type === 'retweet') {
-      setRetweetedByLoggedUser(!markedByUSer);
+      setRetweetedByLoggedUser(!retweetedByLoggedUser);
       // update database
     } else if(type === 'bookmark') {
-      setBookmarkedByLoggedUser(!markedByUSer);
+      setBookmarkedByLoggedUser(!bookmarkedByLoggedUser);
       // update database
+
+      console.log(bookmarked_by);
     }
     console.log('Option Clicked:', markedByUSer, type);
     console.log('User:', loggedInUserid);

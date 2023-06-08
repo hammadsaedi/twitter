@@ -28,10 +28,7 @@ export default function Feed({userName, filter}) {
         { id: 301, bool: true },
         { id: 302, bool: false },
       ],
-      bookmarked_by: [
-        { id: 305, bool: false },
-        { id: 306, bool: false },
-      ],
+      bookmarked_by: [101,102,103],
       retweeted_by: [],
       quoted_tweet: null,
       thread_parent: null,
@@ -47,10 +44,8 @@ export default function Feed({userName, filter}) {
         { id: 303, bool: true },
         { id: 304, bool: true },
       ],
-      bookmarked_by: [
-        { id: 305, bool: false },
-        { id: 306, bool: false },
-      ],
+      bookmarked_by: [101,104,103],
+
       retweeted_by: [101],
       quoted_tweet: null,
       thread_parent: null,
@@ -66,10 +61,7 @@ export default function Feed({userName, filter}) {
         { id: 305, bool: false },
         { id: 306, bool: false },
       ],
-      bookmarked_by: [
-        { id: 305, bool: false },
-        { id: 306, bool: false },
-      ],
+      bookmarked_by: [101,104,103],
       retweeted_by: [],
       quoted_tweet: null,
       thread_parent: null,
@@ -128,11 +120,6 @@ export default function Feed({userName, filter}) {
           <TweetBox />
         }
 
-        {/* Post */}
-        {/* <Tweet text="Hello World!"/>
-        <Tweet text="@elonmusk who?"/>
-        <Tweet text="#MuskHub"/>
-        <Tweet text="کیا مجھے پیار ہے؟"/> */}
 
          {/* Render the fetched tweets */}
         {tweets.map((tweet) => (

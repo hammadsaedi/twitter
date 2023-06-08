@@ -7,6 +7,12 @@
     transition: background-color 0.1s ease-in-out;
     border-radius: 50%;
     color: var(--twitter-text-color);
+    margin-left: 5px;
+}
+
+.option_marked {
+    background-color: var(--twitter-background-hover) !important;
+    border-radius: 60%;
 }
 
 .TweetOption:hover {
@@ -34,5 +40,6 @@
 }
 
 .icon_marked {
+
     color: var(--twitter-color);
 }

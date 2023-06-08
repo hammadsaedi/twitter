@@ -42,9 +42,6 @@ export default function Profile() {
           </div>
         </div>
         
-        <Tweet text="Hello World!"/>
-        <Tweet text="@elonmusk who?"/>
-        <Tweet text="#MuskHub"/>
     </div>
   )
 }

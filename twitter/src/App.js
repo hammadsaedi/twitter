@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { postDataToEndpoint } from './db';
 
 import './App.css';
 import Sidebar from './Sidebar/Sidebar';
@@ -16,6 +17,7 @@ import Profile from './Profile/Profile';
 
 import SignInForm from './SignInUp/SignIn';
 import SignUpForm from './SignInUp/SignUp';
+
 
 function App() {
   const [login, setLogin] = useState(false);
@@ -41,15 +43,28 @@ function App() {
     console.log('Logging in....');
   }
 
-  const handleSignUp = (name, email, password) => {
+  const handleSignUp = async (name, email, password) => {
     // push to database
     setUserName(email.split('@')[0]);
     console.log('Signing Up....');
     setLogin(true);
     setActiveOption("Home");
+    // postDataToEndpoint(data);
+    const user = {
+      name: name,
+      email: email,
+      password: password
+    };
+
+    // Call the postDataToEndpoint function to send the user data to the endpoint
+    // await postDataToEndpoint(user, "user");
+
+    console.log(name, email, password);
   }
 
-
+  // useEffect(() => {
+  //   const document = { content: 'This is a sample document.' };
+  // }, []);
   
   const handleOption = (option) => {
     // updateOpt(option);
@@ -139,7 +154,7 @@ function App() {
 
       {/* States */}
       {activeOption === "States" &&
-        <States  userName={userName} className={`${tweetPopup ? 'blur' : ''}`} />  
+        <States userName={userName} className={`${tweetPopup ? 'blur' : ''}`} />  
       }
 
       {/* Profile */}

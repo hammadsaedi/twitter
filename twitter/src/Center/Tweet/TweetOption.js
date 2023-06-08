@@ -9,7 +9,7 @@ export default function TweetOption({ type, Icon, count, markedByUser, handleOpt
   };
 
   return (
-    <div className='TweetOption'>
+    <div className={markedByUser ? 'TweetOption option_marked': 'TweetOption'}>
       <Icon className={markedByUser ? 'Icon icon_marked' : 'Icon'} onClick={handleClick} />
       <span className="tweet-action-count">{count}</span>
     </div>
