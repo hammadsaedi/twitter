@@ -60,6 +60,8 @@ function App() {
     // await postDataToEndpoint(user, "user");
 
     console.log(name, email, password);
+    console.log("I'm here");
+
   }
 
   // useEffect(() => {

@@ -4,7 +4,6 @@ import Header from '../Header/Header'
 
 import './SignInUp.css'
 
-
 const SignInUpForm = ({handleSignUp}) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -36,42 +35,16 @@ const SignInUpForm = ({handleSignUp}) => {
 
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
-  
-    console.log("I'm here");
-    console.log(name, email, password);
-      
-        console.log("working");
-        const response = await fetch('http://localhost:8080/Twitter', {
-          
-          method: 'POST',
-          body: JSON.stringify({ name, email, password }),
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
-        console.log("working 2")
-        const data = await response.json();
-        console.log(data);
-      
-    
+    handleSignUp(name, email, password);  
   };
   
-  // const getUser = async ()=>{
-  //   const response = await fetch('http://localhost:8080/Twitter',{
-  //     method:'GET',
-  //   })
-  //  const data = await response.json();
-  //  setTweet(data);
-  // }
-
   useEffect(() => {
     const isEmailValid = /\S+@\S+\.\S+/.test(email);
     const isNameValid = name.trim() !== '';
     const isPasswordValid = password.length >= 6;
-    const isConfirmPasswordValid = password === confirmPassword;
+    const isConfirmPasswordValid = String(password) === String(confirmPassword);
 
     setIsFormValid(isEmailValid && isNameValid && isPasswordValid && isConfirmPasswordValid);
   }, [name, email, password, confirmPassword]);
