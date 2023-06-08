@@ -20,11 +20,13 @@
   }
    */
 
-   .profile-details {
-    background-color: #f2f2f2;
+   .header-wrapper {
+    background-color: var(--twitter-background);
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    color: var(--twitter-text-color);
+    margin-top: 10px;
   }
   
   .profile-details h2 {
@@ -40,4 +42,12 @@
     font-weight: bold;
   }
 
-  
+  .profile_name{
+    display: inline;
+    margin-right: 10px;
+    color: var(--twitter-text-color);
+  }
+
+  .optionPane {
+    margin-top: 40px;
+  }
