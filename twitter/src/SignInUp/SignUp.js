@@ -17,7 +17,6 @@ const SignInUpForm = ({handleSignUp}) => {
     if (inputName.length <= 20) {
       setName(inputName);
     }
-    console.log(e.target.value);
   };
 
   const handleEmailChange = (e) => {
@@ -38,14 +37,35 @@ const SignInUpForm = ({handleSignUp}) => {
   };
 
   const handleSubmit = (e) => {
-
+    e.preventDefault();
+    
+  
     console.log("I'm here");
     console.log(name, email, password);
-
-    e.preventDefault();
-    handleSignUp(name, email, password);
-    // Perform form submission logic here 
+      
+        console.log("working");
+        const response = await fetch('http://localhost:8080/Twitter', {
+          
+          method: 'POST',
+          body: JSON.stringify({ name, email, password }),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+        console.log("working 2")
+        const data = await response.json();
+        console.log(data);
+      
+    
   };
+  
+  // const getUser = async ()=>{
+  //   const response = await fetch('http://localhost:8080/Twitter',{
+  //     method:'GET',
+  //   })
+  //  const data = await response.json();
+  //  setTweet(data);
+  // }
 
   useEffect(() => {
     const isEmailValid = /\S+@\S+\.\S+/.test(email);

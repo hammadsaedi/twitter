@@ -20,9 +20,9 @@ import SignUpForm from './SignInUp/SignUp';
 
 
 function App() {
-  const [login, setLogin] = useState(false);
+  const [login, setLogin] = useState(true);
 
-  const [userName, setUserName] = useState('');
+  const [userName, setUserName] = useState('101');
 
   const [activeOption, setActiveOption] = useState("Home");
 
